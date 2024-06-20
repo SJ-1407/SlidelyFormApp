@@ -50,9 +50,11 @@ Partial Class Form1
         ' 
         AutoScaleDimensions = New SizeF(10.0F, 25.0F)
         AutoScaleMode = AutoScaleMode.Font
+        BackColor = SystemColors.Info
         ClientSize = New Size(800, 450)
         Controls.Add(btnCreateSubmission)
         Controls.Add(btnViewSubmissions)
+        ForeColor = SystemColors.ActiveCaptionText
         KeyPreview = True
         Name = "Form1"
         Text = "Shreyas Joshi , Slidely Task -2 ,  Slidely Form App"

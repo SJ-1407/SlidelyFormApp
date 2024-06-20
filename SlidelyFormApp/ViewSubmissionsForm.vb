@@ -69,4 +69,43 @@
     Private Sub Label5_Click(sender As Object, e As EventArgs) Handles Label5.Click
 
     End Sub
+
+    Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+        If currentIndex >= 0 And currentIndex < submissions.Count Then
+            dataHandler.DeleteSubmission(currentIndex)
+            submissions = dataHandler.LoadSubmissions()
+            If currentIndex >= submissions.Count Then
+                currentIndex = submissions.Count - 1
+            End If
+            DisplaySubmission()
+        End If
+    End Sub
+
+    Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
+        If currentIndex >= 0 And currentIndex < submissions.Count Then
+            Dim editForm As New EditSubmissionForm(submissions(currentIndex))
+            If editForm.ShowDialog() = DialogResult.OK Then
+                submissions(currentIndex) = editForm.Submission
+                dataHandler.UpdateSubmission(currentIndex, editForm.Submission)
+                DisplaySubmission()
+            End If
+        End If
+    End Sub
+
+    Private Sub DisplaySubmission()
+        If currentIndex >= 0 And currentIndex < submissions.Count Then
+            txtName.Text = submissions(currentIndex).Name
+            txtEmail.Text = submissions(currentIndex).Email
+            txtPhone.Text = submissions(currentIndex).Phone
+            txtGithub.Text = submissions(currentIndex).GithubLink
+            txtStopWatch.Text = submissions(currentIndex).StopwatchTime
+        Else
+            txtName.Text = String.Empty
+            txtEmail.Text = String.Empty
+            txtPhone.Text = String.Empty
+            txtGithub.Text = String.Empty
+            txtStopWatch.Text = String.Empty
+        End If
+    End Sub
+
 End Class
